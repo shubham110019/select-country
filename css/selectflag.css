@@ -20,6 +20,17 @@
     background: #efefef;
 }
 
+.selectflag #country-list li.selectflag-searchbox{
+    padding: 0px !important;
+    overflow: hidden;
+}
+
+.selectflag #country-list li.selectflag-searchbox input {
+    width: 100% !important;
+    border: none;
+    padding: 12px;
+}
+
 .selectflag #country-list li:not(:last-child){
     border-bottom: 1px solid #bcb3b3;
 }

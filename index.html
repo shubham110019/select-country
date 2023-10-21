@@ -29,9 +29,6 @@
         $(document).ready(function () {
 
 
-            // $('#selectflag').selectflag();
-
-
             $('#selectflag').selectflag({
                 countries: {
                     'AF': 'Afghanistan',
@@ -44,6 +41,7 @@
                 placeholder: {
                     text: "Country"
                 },
+                search: true,
                 onSelect: function (value, element) {
                     console.log(value);
 

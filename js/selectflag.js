@@ -261,6 +261,8 @@
 
         var countryNames = options && options.countries ? options.countries : defaultCountryNames;
         var placeholder = options && options.placeholder ? options.placeholder : defaultPlaceholder;
+        // var searchEnabled = options && options.search ? options.search : false;
+        var searchEnabled = options && options.search ? options.search : false;
 
 
         
@@ -269,6 +271,7 @@
                 options.onSelect(country, this);
             }
         }
+
 
 
         return this.each(function () {
@@ -281,6 +284,9 @@
                 selectedCountry = null; // set selectedCountry to null
                 flagstrapDiv.data('selected-country', selectedCountry);
             }
+
+
+            
 
             // Create Button
             var button = $('<button></button>')
@@ -322,6 +328,32 @@
                 .attr('id', 'country-list')
                 .css('display', 'none')
                 .appendTo(flagstrapDiv);
+            
+             // Add search box
+             if (searchEnabled) {
+                var searchLi = $('<li class="selectflag-searchbox"></li>');
+                var searchBox = $('<input>')
+                    .attr('type', 'text')
+                    .attr('placeholder', 'Search country')
+                    .on('input', function () {
+                        var filter = $(this).val().toUpperCase();
+                        ulElement.find('li').each(function () {
+                            var textValue = $(this).text() || $(this).data('country');
+                            if (textValue) {
+                                if (textValue.toUpperCase().indexOf(filter) > -1) {
+                                    $(this).show();
+                                } else {
+                                    $(this).hide();
+                                }
+                            }
+                        });
+                    });
+                searchLi.append(searchBox);
+                ulElement.append(searchLi);
+            }
+
+            ulElement.appendTo(flagstrapDiv);
+
 
             // Add Li Items to UL Element
             countries.forEach(function (value) {
