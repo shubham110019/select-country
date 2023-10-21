@@ -77,6 +77,17 @@ selectflag all function
 
 ```
 
+selectflag css cdn 
+```
+https://cdn.jsdelivr.net/gh/shubham110019/typingtest@latest/typety.min.js
+```
+
+selectflag js cdn 
+```
+https://cdn.jsdelivr.net/gh/shubham110019/select-country@latest/js/selectflag.min.js
+```
+
+
 
 all country code
 
