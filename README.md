@@ -13,7 +13,7 @@ You can directly include the SelectFlag plugin in your project using the followi
 
 css:
 ```
-https://cdn.jsdelivr.net/gh/shubham110019/select-country@latest/js/selectflag.min.css
+https://cdn.jsdelivr.net/gh/shubham110019/select-country@latest/css/selectflag.min.css
 ```
 
 
