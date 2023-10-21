@@ -10,9 +10,14 @@ html default country add
 <div id="selectflag" data-selected-country="IN"></div>
 ```
 
-jquery code
+selectflag3 all country show 
 ```
- $(document).ready(function () {
+$('#selectflag').selectflag3();
+```
+
+
+selectflag3 countries add show
+```
             $('#selectflag').selectflag3({
                 countries: {
                     'US': 'USA',
@@ -20,39 +25,58 @@ jquery code
                     'GB': 'UK',
                     'AU': 'Australia',
                     'IN': 'India'
-                },
-                onSelect: function (value, element) {
-                    console.log(value);
                 }
             });
-        });
 
 ```
 
 
 
 
-jquery placeholder add 
+selectflag3 placeholder add 
 ```
- $(document).ready(function () {
             $('#selectflag').selectflag3({
+                placeholder: {
+                    text: "Select a country"
+                }
+            });
+
+```
+
+
+selectflag3 callback function 
+```
+            $('#selectflag').selectflag3({
+               onSelect: function (value, element) {
+                    console.log(value);
+
+                }
+            });
+
+```
+
+selectflag3 all function
+```
+       $('#selectflag').selectflag3({
                 countries: {
-                    'US': 'USA',
-                    'CA': 'Canada',
-                    'GB': 'UK',
-                    'AU': 'Australia',
-                    'IN': 'India'
+                    'AF': 'Afghanistan',
+                    'AX': 'Åland Islands',
+                    'AL': 'Albania',
+                    'DZ': 'Algeria',
+                    'AS': 'American Samoa',
+                    'AD': 'Andorra',
                 },
                 placeholder: {
-                    text: "Country of origin"
+                    text: "Select a country"
                 },
                 onSelect: function (value, element) {
                     console.log(value);
+
                 }
             });
-        });
 
 ```
+
 
 all country code
 
