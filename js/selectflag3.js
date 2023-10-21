@@ -361,8 +361,11 @@
 
                     // Hide the country list after selection
                     flagstrapDiv.find('#country-list').hide();
+                    flagstrapDiv.removeClass('selectflag3-active');
+                    flagstrapDiv.find('#flagButton').removeClass('flagButton-active');
                 });
             });
+
 
             function updateButtonText(country) {
                 if (country) {
