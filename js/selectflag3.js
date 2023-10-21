@@ -364,24 +364,13 @@
                 });
             });
 
-            // function updateButtonText(country) {
-            //     if (country) {
-            //         buttonText.text(countryNames[country] + " (" + country + ")");
-            //         spanElement.attr('class', 'flag-icon flag-icon-' + country.toLowerCase()).css('margin-right', '5px');
-            //     } else {
-            //         buttonText.text(options.placeholder.text);
-            //         spanElement.attr('class', 'flag-icon flag-icon-' + (selectedCountry ? selectedCountry.toLowerCase() : 'default')).css('margin-right', '5px');
-            //     }
-            // }
-
-
             function updateButtonText(country) {
                 if (country) {
                     buttonText.text(countryNames[country] + " (" + country + ")");
                     spanElement.attr('class', 'flag-icon flag-icon-' + country.toLowerCase()).css('margin-right', '5px');
                 } else {
                     buttonText.text(placeholder.text); // Update the button text with the placeholder
-                    spanElement.attr('class', 'flag-icon flag-icon-' + (selectedCountry ? selectedCountry.toLowerCase() : 'default')).css('margin-right', '5px');
+                    spanElement.attr('class', '').css('margin-right', '0px');
                 }
             }
 
