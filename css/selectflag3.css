@@ -1,3 +1,5 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css");
+
 .selectflag3 #country-list{
     padding: 0;
     margin: 0;
@@ -26,4 +28,17 @@
     border-radius: 4px;
     min-width: 200px;
     text-align: left;
+    position: relative !important;
+}
+
+.selectflag3 button#flagButton span#arr-icn{
+    right: 10px;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    position: absolute;
+    transition: 300ms linear all;
+}
+
+.selectflag3.selectflag3-active button#flagButton span#arr-icn svg{
+    transform: rotate(180deg);
 }

@@ -11,18 +11,29 @@
             var selectedCountry = flagstrapDiv.data('selected-country');
             var countries = Object.keys(countryNames);
 
+            // Check if data-selected-country exists, if not, set a default value
+            if (!selectedCountry) {
+                selectedCountry = null; // set selectedCountry to null
+                flagstrapDiv.data('selected-country', selectedCountry);
+            }
+
             // Create Button
             var button = $('<button></button>')
                 .attr('id', 'flagButton')
                 .css('display', 'flex')
                 .appendTo(flagstrapDiv);
 
+            var spanIcon = $('<span id="arr-icn"><svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 2L10 10L2 2" stroke="#808080" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>')
+                .appendTo(button);
+
             var spanElement = $('<span></span>')
-                .addClass('flag-icon flag-icon-' + selectedCountry.toLowerCase())
+                .addClass('flag-icon flag-icon-' + (selectedCountry ? selectedCountry.toLowerCase() : 'default'))
                 .css('margin-right', '5px')
                 .appendTo(button);
 
-            button.append(countryNames[selectedCountry] + " (" + selectedCountry + ")");
+            var buttonText = $('<span></span>').appendTo(button);
+
+            updateButtonText();
 
             // Create Select Element
             var selectElement = $('<select></select>')
@@ -70,14 +81,7 @@
                     var countrySelect = flagstrapDiv.find('#country-select');
                     countrySelect.val(country);
 
-                    var flagButton = flagstrapDiv.find('#flagButton');
-                    flagButton.empty();
-                    var buttonSpan = $('<span></span>')
-                        .addClass('flag-icon flag-icon-' + country.toLowerCase())
-                        .css('margin-right', '5px')
-                        .appendTo(flagButton);
-
-                    flagButton.append(countryNames[country] + " (" + country + ")");
+                    updateButtonText(country);
 
                     var liList = flagstrapDiv.find('#country-list li');
                     liList.removeClass('selected');
@@ -95,9 +99,21 @@
                 });
             });
 
+            function updateButtonText(country) {
+                if (country) {
+                    buttonText.text(countryNames[country] + " (" + country + ")");
+                    spanElement.attr('class', 'flag-icon flag-icon-' + country.toLowerCase()).css('margin-right', '5px');
+                } else {
+                    buttonText.text(options.placeholder.text);
+                    spanElement.attr('class', 'flag-icon flag-icon-' + (selectedCountry ? selectedCountry.toLowerCase() : 'default')).css('margin-right', '5px');
+                }
+            }
+
             // Set data-selected-country value in the select and ul li elements
-            flagstrapDiv.find('#country-select').val(selectedCountry);
-            flagstrapDiv.find('#country-list li[data-country="' + selectedCountry + '"]').addClass('selected');
+            if (selectedCountry) {
+                flagstrapDiv.find('#country-select').val(selectedCountry);
+                flagstrapDiv.find('#country-list li[data-country="' + selectedCountry + '"]').addClass('selected');
+            }
 
             // Hide and show the #country-list on flagButton click
             flagstrapDiv.find('#flagButton').on('click', function () {
