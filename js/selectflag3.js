@@ -31,9 +31,9 @@
                 .css('margin-right', '5px')
                 .appendTo(button);
 
-            var buttonText = $('<span></span>').appendTo(button);
+            var buttonText = $('<span class="ctytxt"></span>').appendTo(button);
 
-            updateButtonText();
+            updateButtonText(selectedCountry);
 
             // Create Select Element
             var selectElement = $('<select></select>')
