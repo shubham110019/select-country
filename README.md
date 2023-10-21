@@ -1,5 +1,8 @@
 # selectflag
 
+
+[Live Demo](https://codepen.io/sralli73/pen/XWOWdzM) 
+
 html code
 ```
 <div id="selectflag"></div>
@@ -79,7 +82,7 @@ selectflag all function
 
 selectflag css cdn 
 ```
-https://cdn.jsdelivr.net/gh/shubham110019/typingtest@latest/typety.min.js
+https://cdn.jsdelivr.net/gh/shubham110019/select-country@latest/js/selectflag.min.js
 ```
 
 selectflag js cdn 
