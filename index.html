@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Select and UL Creation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        #country-list {
+            margin: 0;
+            padding: 0;
+        }
+
+        #country-list li {
+            list-style-type: none;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        #country-list li.selected {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div id="flagstrap" data-selected-country="CA"></div>
+
+<script>
+    $(document).ready(function () {
+        var flagstrapDiv = $('#flagstrap');
+        var selectedCountry = flagstrapDiv.data('selected-country');
+
+        // Create Button
+        var countryNames = {
+            'US': 'USA',
+            'CA': 'Canada',
+            'GB': 'UK',
+            'AU': 'Australia'
+        };
+        var button = $('<button>', {
+            id: 'flagButton',
+            style: 'display: flex',
+            text: countryNames[selectedCountry]
+        });
+
+        var spanElement = $('<span>', {
+            class: 'flag-icon flag-icon-' + selectedCountry.toLowerCase(),
+            style: 'margin-right: 5px;'
+        });
+
+        button.append(spanElement);
+        flagstrapDiv.append(button);
+
+        // Create Select Element
+        var selectElement = $('<select>', {
+            id: 'country-select',
+            style: 'display: none' // Initially hide the select element
+        });
+        flagstrapDiv.append(selectElement);
+
+        // Add Options to Select Element
+        var countries = ["US", "CA", "GB", "AU"]; // Add more countries as needed
+        $.each(countries, function (index, value) {
+            var optionElement = $('<option>', {
+                value: value,
+                text: countryNames[value],
+                selected: value === selectedCountry ? 'selected' : undefined
+            });
+            if (value === selectedCountry) {
+                optionElement.attr('selected', 'selected');
+            }
+            $('#country-select').append(optionElement);
+        });
+
+        // Create UL Element
+        var ulElement = $('<ul>', {
+            id: 'country-list'
+        });
+        flagstrapDiv.append(ulElement);
+
+        // Add Li Items to UL Element
+        $.each(countries, function (index, value) {
+            var liElement = $('<li>', {
+                'data-country': value,
+                style: 'display: flex; align-items: center;'
+            });
+            var spanElement = $('<span>', {
+                class: 'flag-icon flag-icon-' + value.toLowerCase(),
+                style: 'margin-right: 5px;'
+            });
+            liElement.append(spanElement);
+            liElement.append(countryNames[value]);
+            $('#country-list').append(liElement);
+        });
+
+        // $("#flagstrap").on('click', '#flagButton', function () {
+        //     $("#country-select").toggle();
+        // });
+
+        $("#country-list li").click(function () {
+            var country = $(this).attr('data-country');
+            $("#country-select").val(country).trigger('change');
+            $("#flagButton").text(countryNames[country]);
+            var buttonSpan = $("#flagButton").find('span');
+            buttonSpan.attr('class', 'flag-icon flag-icon-' + country.toLowerCase());
+            buttonSpan.show();
+
+            $('#country-list li').removeClass('selected');
+            $(this).addClass('selected');
+
+            $('#country-select option').removeAttr('selected');
+            $('#country-select option[value="' + country + '"]').attr('selected', 'selected');
+
+            // Call the callback function here
+            callbackFunction(country);
+        });
+    });
+
+    function callbackFunction(country) {
+        // Callback function logic here
+        console.log("Selected Country: " + country);
+    }
+</script>
+
+</body>
+</html>
