@@ -44,14 +44,14 @@ $('#selectflag').selectflag();
 You can customize the SelectFlag plugin using various options and configurations:
 
 
-To set a default country, use the data-selected-country attribute in the div tag.
+To set a default country, use the **data-selected-country** attribute in the **div** tag.
 
 ```
 <div id="selectflag" data-selected-country="IN"></div>
 ```
 
 
-To display specific countries, use the countries option.
+To display specific countries, use the **countries** option.
 
 ```
 $('#selectflag').selectflag({
@@ -65,7 +65,7 @@ $('#selectflag').selectflag({
 });
 ```
 
-Enable live search functionality by setting the search option to true.
+Enable live search functionality by setting the **search** option to **true**.
 
 ```
 $('#selectflag').selectflag({
@@ -74,7 +74,7 @@ $('#selectflag').selectflag({
 
 ```
 
-Set a custom placeholder for the select box using the placeholder option.
+Set a custom placeholder for the select box using the **placeholder** option.
 
 ```
 $('#selectflag').selectflag({
@@ -84,7 +84,7 @@ $('#selectflag').selectflag({
 });
 ```
 
-Implement a callback function to handle the selected country using the onSelect option.
+Implement a callback function to handle the selected country using the **onSelect** option.
 
 ```
 $('#selectflag').selectflag({
