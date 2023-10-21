@@ -5,111 +5,122 @@
     <meta charset="UTF-8">
     <title>Dynamic Select and UL Creation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+    <link rel="stylesheet" href="./css/selectflag3.css">
 </head>
 
 <body>
 
-    <div id="flagstrap" data-selected-country="CA"></div>
+    <div id="selectflag3" data-selected-country="CA"></div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var flagstrapDiv = document.getElementById('flagstrap');
-            var selectedCountry = flagstrapDiv.getAttribute('data-selected-country');
+        var Selectflag3 = (function () {
+            function init(containerId, countryNames) {
+                var flagstrapDiv = document.getElementById(containerId);
+                var selectedCountry = flagstrapDiv.getAttribute('data-selected-country');
+                var countries = Object.keys(countryNames);
 
-            var countryNames = {
-                'US': 'USA',
-                'CA': 'Canada',
-                'GB': 'UK',
-                'AU': 'Australia'
-            };
-
-            var countries = Object.keys(countryNames);
-
-            // Create Button
-            var button = document.createElement('button');
-            button.id = 'flagButton';
-            button.style.display = 'flex';
-
-            var spanElement = document.createElement('span');
-            spanElement.className = 'flag-icon flag-icon-' + selectedCountry.toLowerCase();
-            spanElement.style.marginRight = '5px';
-
-            button.appendChild(spanElement);
-            button.appendChild(document.createTextNode(countryNames[selectedCountry]));
-            flagstrapDiv.appendChild(button);
-
-            // Create Select Element
-            var selectElement = document.createElement('select');
-            selectElement.id = 'country-select';
-            selectElement.style.display = 'none';
-            flagstrapDiv.appendChild(selectElement);
-
-            // Add Options to Select Element
-            countries.forEach(function (value) {
-                var optionElement = document.createElement('option');
-                optionElement.value = value;
-                optionElement.text = countryNames[value];
-                if (value === selectedCountry) {
-                    optionElement.selected = true;
-                }
-                selectElement.appendChild(optionElement);
-            });
-
-            // Create UL Element
-            var ulElement = document.createElement('ul');
-            ulElement.id = 'country-list';
-            flagstrapDiv.appendChild(ulElement);
-
-            // Add Li Items to UL Element
-            countries.forEach(function (value) {
-                var liElement = document.createElement('li');
-                liElement.setAttribute('data-country', value);
-                liElement.style.display = 'flex';
-                liElement.style.alignItems = 'center';
+                // Create Button
+                var button = document.createElement('button');
+                button.id = 'flagButton';
+                button.style.display = 'flex';
 
                 var spanElement = document.createElement('span');
-                spanElement.className = 'flag-icon flag-icon-' + value.toLowerCase();
+                spanElement.className = 'flag-icon flag-icon-' + selectedCountry.toLowerCase();
                 spanElement.style.marginRight = '5px';
 
-                liElement.appendChild(spanElement);
-                liElement.appendChild(document.createTextNode(countryNames[value] + " (" + value + ")"));
-                ulElement.appendChild(liElement);
+                button.appendChild(spanElement);
+                button.appendChild(document.createTextNode(countryNames[selectedCountry]));
+                flagstrapDiv.appendChild(button);
 
-                liElement.addEventListener('click', function () {
-                    var country = this.getAttribute('data-country');
-                    var countrySelect = document.getElementById('country-select');
-                    countrySelect.value = country;
+                // Create Select Element
+                var selectElement = document.createElement('select');
+                selectElement.id = 'country-select';
+                selectElement.style.display = 'none';
+                flagstrapDiv.appendChild(selectElement);
 
-                    var flagButton = document.getElementById('flagButton');
-                    flagButton.innerHTML = '';
-                    var buttonSpan = document.createElement('span');
-                    buttonSpan.className = 'flag-icon flag-icon-' + country.toLowerCase();
-                    buttonSpan.style.marginRight = '5px';
-                    flagButton.appendChild(buttonSpan);
-                    flagButton.appendChild(document.createTextNode(countryNames[country]));
-
-                    var liList = document.querySelectorAll('#country-list li');
-                    liList.forEach(function (li) {
-                        li.classList.remove('selected');
-                    });
-                    this.classList.add('selected');
-
-                    var options = countrySelect.options;
-                    for (var i = 0; i < options.length; i++) {
-                        options[i].selected = false;
+                // Add Options to Select Element
+                countries.forEach(function (value) {
+                    var optionElement = document.createElement('option');
+                    optionElement.value = value;
+                    optionElement.text = countryNames[value];
+                    if (value === selectedCountry) {
+                        optionElement.selected = 'selected';
                     }
-                    countrySelect.querySelector('option[value="' + country + '"]').selected = true;
-
-                    // Call the callback function here
-                    callbackFunction(country);
+                    selectElement.appendChild(optionElement);
                 });
-            });
-        });
 
-        function callbackFunction(country) {
-            // Callback function logic here
-            console.log("Selected Country: " + country);
-        }
+                // Create UL Element
+                var ulElement = document.createElement('ul');
+                ulElement.id = 'country-list';
+                flagstrapDiv.appendChild(ulElement);
+
+                // Add Li Items to UL Element
+                countries.forEach(function (value) {
+                    var liElement = document.createElement('li');
+                    liElement.setAttribute('data-country', value);
+                    liElement.style.display = 'flex';
+                    liElement.style.alignItems = 'center';
+
+                    var spanElement = document.createElement('span');
+                    spanElement.className = 'flag-icon flag-icon-' + value.toLowerCase();
+                    spanElement.style.marginRight = '5px';
+
+                    liElement.appendChild(spanElement);
+                    liElement.appendChild(document.createTextNode(countryNames[value] + " (" + value + ")"));
+                    ulElement.appendChild(liElement);
+
+                    liElement.addEventListener('click', function () {
+                        var country = this.getAttribute('data-country');
+                        var countrySelect = document.getElementById('country-select');
+                        countrySelect.value = country;
+
+                        var flagButton = document.getElementById('flagButton');
+                        flagButton.innerHTML = '';
+                        var buttonSpan = document.createElement('span');
+                        buttonSpan.className = 'flag-icon flag-icon-' + country.toLowerCase();
+                        buttonSpan.style.marginRight = '5px';
+                        flagButton.appendChild(buttonSpan);
+                        flagButton.appendChild(document.createTextNode(countryNames[country]));
+
+                        var liList = document.querySelectorAll('#country-list li');
+                        liList.forEach(function (li) {
+                            li.classList.remove('selected');
+                        });
+                        this.classList.add('selected');
+
+                        var options = countrySelect.options;
+                        for (var i = 0; i < options.length; i++) {
+                            options[i].removeAttribute('selected');
+                        }
+                        countrySelect.querySelector('option[value="' + country + '"]').setAttribute('selected', 'selected');
+
+                        // Call the callback function here
+                        callbackFunction(country);
+                    });
+                });
+
+                function callbackFunction(country) {
+                    // Callback function logic here
+                    console.log("Selected Country: " + country);
+                }
+            }
+
+            return {
+                init: init
+            };
+        })();
+
+        // Example usage of the selectflag3 library
+        var countryNames = {
+            'US': 'USA',
+            'CA': 'Canada',
+            'GB': 'UK',
+            'AU': 'Australia'
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var selectflag3 = Selectflag3.init('selectflag3', countryNames);
+        });
     </script>
 
 </body>
