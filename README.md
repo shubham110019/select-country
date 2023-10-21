@@ -34,6 +34,13 @@ selectflag countries add show
 ```
 
 
+selectflag live search box
+```
+            $('#selectflag').selectflag({
+               search:true,
+            });
+
+```
 
 
 selectflag placeholder add 
