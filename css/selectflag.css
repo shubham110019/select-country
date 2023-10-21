@@ -1,6 +1,6 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css");
 
-.selectflag3 #country-list{
+.selectflag #country-list{
     padding: 0;
     margin: 0;
     max-width: 200px;
@@ -9,19 +9,19 @@
     margin-top: 2px;
 }
 
-.selectflag3 #country-list li{
+.selectflag #country-list li{
     padding: 8px !important;
 }
 
-.selectflag3 #country-list li:hover{
+.selectflag #country-list li:hover{
     background: #efefef;
 }
 
-.selectflag3 #country-list li:not(:last-child){
+.selectflag #country-list li:not(:last-child){
     border-bottom: 1px solid #bcb3b3;
 }
 
-.selectflag3 button#flagButton{
+.selectflag button#flagButton{
     padding: 12px;
     background: transparent;
     border: 1px solid #bcb3b3;
@@ -32,7 +32,7 @@
     padding-right: 40px;
 }
 
-.selectflag3 button#flagButton span#arr-icn{
+.selectflag button#flagButton span#arr-icn{
     right: 10px;
     top: 50% !important;
     transform: translateY(-50%) !important;
@@ -40,6 +40,6 @@
     transition: 300ms linear all;
 }
 
-.selectflag3.selectflag3-active button#flagButton span#arr-icn svg{
+.selectflag.selectflag-active button#flagButton span#arr-icn svg{
     transform: rotate(180deg);
 }

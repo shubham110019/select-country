@@ -1,5 +1,5 @@
 (function ($) {
-    $.fn.selectflag3 = function (options) {
+    $.fn.selectflag = function (options) {
         // var countryNames = options.countries;
         var defaultCountryNames = {
             'AF': 'Afghanistan',
@@ -272,7 +272,7 @@
 
 
         return this.each(function () {
-            var flagstrapDiv = $(this).addClass('selectflag3');
+            var flagstrapDiv = $(this).addClass('selectflag');
             var selectedCountry = flagstrapDiv.data('selected-country');
             var countries = Object.keys(countryNames);
 
@@ -361,7 +361,7 @@
 
                     // Hide the country list after selection
                     flagstrapDiv.find('#country-list').hide();
-                    flagstrapDiv.removeClass('selectflag3-active');
+                    flagstrapDiv.removeClass('selectflag-active');
                     flagstrapDiv.find('#flagButton').removeClass('flagButton-active');
                 });
             });
@@ -386,15 +386,15 @@
             // Hide and show the #country-list on flagButton click
             flagstrapDiv.find('#flagButton').on('click', function () {
                 flagstrapDiv.find('#country-list').toggle();
-                flagstrapDiv.toggleClass('selectflag3-active');
+                flagstrapDiv.toggleClass('selectflag-active');
                 $(this).toggleClass('flagButton-active');
             });
 
-            // Hide #country-list if clicked outside of .selectflag3
+            // Hide #country-list if clicked outside of .selectflag
             $(document).on('click', function (event) {
-                if (!$(event.target).closest('.selectflag3').length) {
+                if (!$(event.target).closest('.selectflag').length) {
                     flagstrapDiv.find('#country-list').hide();
-                    flagstrapDiv.removeClass('selectflag3-active');
+                    flagstrapDiv.removeClass('selectflag-active');
                     flagstrapDiv.find('#flagButton').removeClass('flagButton-active');
                 }
             });

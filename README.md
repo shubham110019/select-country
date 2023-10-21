@@ -1,4 +1,4 @@
-# selectflag3
+# selectflag
 
 html code
 ```
@@ -10,15 +10,15 @@ html default country add
 <div id="selectflag" data-selected-country="IN"></div>
 ```
 
-selectflag3 all country show 
+selectflag all country show 
 ```
-$('#selectflag').selectflag3();
+$('#selectflag').selectflag();
 ```
 
 
-selectflag3 countries add show
+selectflag countries add show
 ```
-            $('#selectflag').selectflag3({
+            $('#selectflag').selectflag({
                 countries: {
                     'US': 'USA',
                     'CA': 'Canada',
@@ -33,9 +33,9 @@ selectflag3 countries add show
 
 
 
-selectflag3 placeholder add 
+selectflag placeholder add 
 ```
-            $('#selectflag').selectflag3({
+            $('#selectflag').selectflag({
                 placeholder: {
                     text: "Select a country"
                 }
@@ -44,9 +44,9 @@ selectflag3 placeholder add
 ```
 
 
-selectflag3 callback function 
+selectflag callback function 
 ```
-            $('#selectflag').selectflag3({
+            $('#selectflag').selectflag({
                onSelect: function (value, element) {
                     console.log(value);
 
@@ -55,9 +55,9 @@ selectflag3 callback function
 
 ```
 
-selectflag3 all function
+selectflag all function
 ```
-       $('#selectflag').selectflag3({
+       $('#selectflag').selectflag({
                 countries: {
                     'AF': 'Afghanistan',
                     'AX': 'Åland Islands',
