@@ -1,0 +1,29 @@
+.selectflag3 #country-list{
+    padding: 0;
+    margin: 0;
+    max-width: 200px;
+    border: 1px solid #bcb3b3;
+    border-radius: 4px;
+    margin-top: 2px;
+}
+
+.selectflag3 #country-list li{
+    padding: 8px !important;
+}
+
+.selectflag3 #country-list li:hover{
+    background: #efefef;
+}
+
+.selectflag3 #country-list li:not(:last-child){
+    border-bottom: 1px solid #bcb3b3;
+}
+
+.selectflag3 button#flagButton{
+    padding: 12px;
+    background: transparent;
+    border: 1px solid #bcb3b3;
+    border-radius: 4px;
+    min-width: 200px;
+    text-align: left;
+}

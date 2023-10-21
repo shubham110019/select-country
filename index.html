@@ -10,14 +10,14 @@
 
 <body>
 
-    <div id="selectflag3" data-selected-country="IN"></div>
+    <div id="selectflag" data-selected-country="IN"></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./js/selectflag3.js"></script>
     <script>
       
         jQuery(document).ready(function () {
-            jQuery('#selectflag3').selectflag3({
+            jQuery('#selectflag').selectflag3({
                 countries: {
                     'US': 'USA',
                     'CA': 'Canada',
@@ -27,6 +27,9 @@
                 },
                 onSelect: function (value, element) {
                     console.log(value);
+
+                    alert(value);
+                  
                 }
             });
         });

@@ -1,107 +1,119 @@
-jQuery.fn.selectflag3 = function (options) {
-    var countryNames = options.countries;
+(function ($) {
+    $.fn.selectflag3 = function (options) {
+        var countryNames = options.countries;
 
-    function callbackFunction(country) {
-        options.onSelect(country, this);
-    }
+        function callbackFunction(country) {
+            options.onSelect(country, this);
+        }
 
-    return this.each(function () {
-        var containerId = this.id;
-        Selectflag3.init(containerId, countryNames, callbackFunction);
-    });
-};
+        return this.each(function () {
+            var flagstrapDiv = $(this).addClass('selectflag3');
+            var selectedCountry = flagstrapDiv.data('selected-country');
+            var countries = Object.keys(countryNames);
 
-var Selectflag3 = (function () {
-    function init(containerId, countryNames, callbackFunction) {
-        var flagstrapDiv = document.getElementById(containerId);
-        var selectedCountry = flagstrapDiv.getAttribute('data-selected-country');
-        var countries = Object.keys(countryNames);
+            // Create Button
+            var button = $('<button></button>')
+                .attr('id', 'flagButton')
+                .css('display', 'flex')
+                .appendTo(flagstrapDiv);
 
-        // Create Button
-        var button = document.createElement('button');
-        button.id = 'flagButton';
-        button.style.display = 'flex';
+            var spanElement = $('<span></span>')
+                .addClass('flag-icon flag-icon-' + selectedCountry.toLowerCase())
+                .css('margin-right', '5px')
+                .appendTo(button);
 
-        var spanElement = document.createElement('span');
-        spanElement.className = 'flag-icon flag-icon-' + selectedCountry.toLowerCase();
-        spanElement.style.marginRight = '5px';
+            button.append(countryNames[selectedCountry] + " (" + selectedCountry + ")");
 
-        button.appendChild(spanElement);
-        button.appendChild(document.createTextNode(countryNames[selectedCountry] + " (" + selectedCountry + ")"));
-        flagstrapDiv.appendChild(button);
+            // Create Select Element
+            var selectElement = $('<select></select>')
+                .attr('id', 'country-select')
+                .css('display', 'none')
+                .appendTo(flagstrapDiv);
 
-        // Create Select Element
-        var selectElement = document.createElement('select');
-        selectElement.id = 'country-select';
-        selectElement.style.display = 'none';
-        flagstrapDiv.appendChild(selectElement);
-
-        // Add Options to Select Element
-        countries.forEach(function (value) {
-            var optionElement = document.createElement('option');
-            optionElement.value = value;
-            optionElement.text = countryNames[value];
-            if (value === selectedCountry) {
-                optionElement.setAttribute('selected', 'selected');
-            }
-            selectElement.appendChild(optionElement);
-        });
-
-        // Create UL Element
-        var ulElement = document.createElement('ul');
-        ulElement.id = 'country-list';
-        flagstrapDiv.appendChild(ulElement);
-
-        // Add Li Items to UL Element
-        countries.forEach(function (value) {
-            var liElement = document.createElement('li');
-            liElement.setAttribute('data-country', value);
-            liElement.style.display = 'flex';
-            liElement.style.alignItems = 'center';
-            if (value === selectedCountry) {
-                liElement.classList.add('selected');
-            }
-
-            var spanElement = document.createElement('span');
-            spanElement.className = 'flag-icon flag-icon-' + value.toLowerCase();
-            spanElement.style.marginRight = '5px';
-
-            liElement.appendChild(spanElement);
-            liElement.appendChild(document.createTextNode(countryNames[value] + " (" + value + ")"));
-            ulElement.appendChild(liElement);
-
-            liElement.addEventListener('click', function () {
-                var country = this.getAttribute('data-country');
-                var countrySelect = document.getElementById('country-select');
-                countrySelect.value = country;
-
-                var flagButton = document.getElementById('flagButton');
-                flagButton.innerHTML = '';
-                var buttonSpan = document.createElement('span');
-                buttonSpan.className = 'flag-icon flag-icon-' + country.toLowerCase();
-                buttonSpan.style.marginRight = '5px';
-                flagButton.appendChild(buttonSpan);
-                flagButton.appendChild(document.createTextNode(countryNames[country] + " (" + country + ")"));
-
-                var liList = document.querySelectorAll('#country-list li');
-                liList.forEach(function (li) {
-                    li.classList.remove('selected');
-                });
-                this.classList.add('selected');
-
-                var options = countrySelect.options;
-                for (var i = 0; i < options.length; i++) {
-                    options[i].removeAttribute('selected');
+            // Add Options to Select Element
+            countries.forEach(function (value) {
+                var optionElement = $('<option></option>')
+                    .attr('value', value)
+                    .text(countryNames[value])
+                    .appendTo(selectElement);
+                if (value === selectedCountry) {
+                    optionElement.attr('selected', 'selected');
                 }
-                countrySelect.querySelector('option[value="' + country + '"]').setAttribute('selected', 'selected');
+            });
 
-                // Call the callback function here
-                callbackFunction(country);
+            // Create UL Element
+            var ulElement = $('<ul></ul>')
+                .attr('id', 'country-list')
+                .css('display', 'none')
+                .appendTo(flagstrapDiv);
+
+            // Add Li Items to UL Element
+            countries.forEach(function (value) {
+                var liElement = $('<li></li>')
+                    .attr('data-country', value)
+                    .css('display', 'flex')
+                    .css('align-items', 'center')
+                    .appendTo(ulElement);
+                if (value === selectedCountry) {
+                    liElement.addClass('selected');
+                }
+
+                var spanElement = $('<span></span>')
+                    .addClass('flag-icon flag-icon-' + value.toLowerCase())
+                    .css('margin-right', '5px')
+                    .appendTo(liElement);
+
+                liElement.append(countryNames[value] + " (" + value + ")");
+
+                liElement.on('click', function () {
+                    var country = $(this).data('country');
+                    var countrySelect = flagstrapDiv.find('#country-select');
+                    countrySelect.val(country);
+
+                    var flagButton = flagstrapDiv.find('#flagButton');
+                    flagButton.empty();
+                    var buttonSpan = $('<span></span>')
+                        .addClass('flag-icon flag-icon-' + country.toLowerCase())
+                        .css('margin-right', '5px')
+                        .appendTo(flagButton);
+
+                    flagButton.append(countryNames[country] + " (" + country + ")");
+
+                    var liList = flagstrapDiv.find('#country-list li');
+                    liList.removeClass('selected');
+                    $(this).addClass('selected');
+
+                    var options = countrySelect.find('option');
+                    options.removeAttr('selected');
+                    countrySelect.find('option[value="' + country + '"]').attr('selected', 'selected');
+
+                    // Call the callback function here
+                    callbackFunction(country);
+
+                    // Hide the country list after selection
+                    flagstrapDiv.find('#country-list').hide();
+                });
+            });
+
+            // Set data-selected-country value in the select and ul li elements
+            flagstrapDiv.find('#country-select').val(selectedCountry);
+            flagstrapDiv.find('#country-list li[data-country="' + selectedCountry + '"]').addClass('selected');
+
+            // Hide and show the #country-list on flagButton click
+            flagstrapDiv.find('#flagButton').on('click', function () {
+                flagstrapDiv.find('#country-list').toggle();
+                flagstrapDiv.toggleClass('selectflag3-active');
+                $(this).toggleClass('flagButton-active');
+            });
+
+            // Hide #country-list if clicked outside of .selectflag3
+            $(document).on('click', function (event) {
+                if (!$(event.target).closest('.selectflag3').length) {
+                    flagstrapDiv.find('#country-list').hide();
+                    flagstrapDiv.removeClass('selectflag3-active');
+                    flagstrapDiv.find('#flagButton').removeClass('flagButton-active');
+                }
             });
         });
-    }
-
-    return {
-        init: init
     };
-})();
+})(jQuery);
