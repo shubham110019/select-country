@@ -1,109 +1,109 @@
-# selectflag
+# SelectFlag
+
+SelectFlag is a jQuery plugin that facilitates the creation of a custom select box for choosing countries with flags.
+
+## Live Demo
+
+Check out the live demo [here](https://codepen.io/sralli73/pen/XWOWdzM).
 
 
-[Live Demo](https://codepen.io/sralli73/pen/XWOWdzM) 
+## CDN Links
 
-html code
+You can directly include the SelectFlag plugin in your project using the following CDN links:
+
+css:
+```
+https://cdn.jsdelivr.net/gh/shubham110019/select-country@latest/js/selectflag.min.css
+```
+
+
+js:
+```
+https://cdn.jsdelivr.net/gh/shubham110019/select-country@latest/js/selectflag.min.js
+```
+
+## Getting Started
+
+To use the SelectFlag plugin, follow the steps below.
+
+1. Add an empty `div` with the id `selectflag` to your HTML file.
+
 ```
 <div id="selectflag"></div>
 ```
 
-html default country add
-```
-<div id="selectflag" data-selected-country="IN"></div>
-```
+Initialize the plugin using the provided JavaScript code.
 
-selectflag all country show 
 ```
 $('#selectflag').selectflag();
 ```
 
 
-selectflag countries add show
-```
-            $('#selectflag').selectflag({
-                countries: {
-                    'US': 'USA',
-                    'CA': 'Canada',
-                    'GB': 'UK',
-                    'AU': 'Australia',
-                    'IN': 'India'
-                }
-            });
+## Customization
 
+You can customize the SelectFlag plugin using various options and configurations:
+
+
+To set a default country, use the data-selected-country attribute in the div tag.
+
+```
+<div id="selectflag" data-selected-country="IN"></div>
 ```
 
 
-selectflag live search box
-```
-            $('#selectflag').selectflag({
-               search:true,
-            });
+To display specific countries, use the countries option.
 
 ```
-
-
-selectflag placeholder add 
+$('#selectflag').selectflag({
+    countries: {
+        'US': 'USA',
+        'CA': 'Canada',
+        'GB': 'UK',
+        'AU': 'Australia',
+        'IN': 'India'
+    }
+});
 ```
-            $('#selectflag').selectflag({
-                placeholder: {
-                    text: "Select a country"
-                }
-            });
+
+Enable live search functionality by setting the search option to true.
 
 ```
-
-
-selectflag callback function 
-```
-            $('#selectflag').selectflag({
-               onSelect: function (value, element) {
-                    console.log(value);
-
-                }
-            });
+$('#selectflag').selectflag({
+    search: true
+});
 
 ```
 
-selectflag all function
-```
-       $('#selectflag').selectflag({
-                countries: {
-                    'AF': 'Afghanistan',
-                    'AX': 'Åland Islands',
-                    'AL': 'Albania',
-                    'DZ': 'Algeria',
-                    'AS': 'American Samoa',
-                    'AD': 'Andorra',
-                },
-                placeholder: {
-                    text: "Select a country"
-                },
-                onSelect: function (value, element) {
-                    console.log(value);
-
-                }
-            });
+Set a custom placeholder for the select box using the placeholder option.
 
 ```
+$('#selectflag').selectflag({
+    placeholder: {
+        text: "Select a country"
+    }
+});
+```
 
-selectflag css cdn 
-```
-https://cdn.jsdelivr.net/gh/shubham110019/select-country@latest/js/selectflag.min.js
-```
+Implement a callback function to handle the selected country using the onSelect option.
 
-selectflag js cdn 
 ```
-https://cdn.jsdelivr.net/gh/shubham110019/select-country@latest/js/selectflag.min.js
+$('#selectflag').selectflag({
+    onSelect: function (value, element) {
+        console.log(value);
+    }
+});
 ```
 
 
+## All Countries
 
-all country code
+
+Here is a list of all the supported countries:
+
 
 ```
 countries: {
-                    'AF': 'Afghanistan',
+    'AF': 'Afghanistan',
     'AX': 'Åland Islands',
     'AL': 'Albania',
     'DZ': 'Algeria',
@@ -352,6 +352,5 @@ countries: {
     'YE': 'Yemen',
     'ZM': 'Zambia',
     'ZW': 'Zimbabwe'
-                },
-
+}
 ```
