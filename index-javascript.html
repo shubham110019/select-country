@@ -29,7 +29,7 @@
                 spanElement.style.marginRight = '5px';
 
                 button.appendChild(spanElement);
-                button.appendChild(document.createTextNode(countryNames[selectedCountry]));
+                button.appendChild(document.createTextNode(countryNames[selectedCountry] + " (" + selectedCountry + ")"));
                 flagstrapDiv.appendChild(button);
 
                 // Create Select Element
@@ -44,7 +44,7 @@
                     optionElement.value = value;
                     optionElement.text = countryNames[value];
                     if (value === selectedCountry) {
-                        optionElement.selected = 'selected';
+                        optionElement.setAttribute('selected', 'selected');
                     }
                     selectElement.appendChild(optionElement);
                 });
@@ -60,6 +60,9 @@
                     liElement.setAttribute('data-country', value);
                     liElement.style.display = 'flex';
                     liElement.style.alignItems = 'center';
+                    if (value === selectedCountry) {
+                        liElement.classList.add('selected');
+                    }
 
                     var spanElement = document.createElement('span');
                     spanElement.className = 'flag-icon flag-icon-' + value.toLowerCase();
@@ -80,7 +83,7 @@
                         buttonSpan.className = 'flag-icon flag-icon-' + country.toLowerCase();
                         buttonSpan.style.marginRight = '5px';
                         flagButton.appendChild(buttonSpan);
-                        flagButton.appendChild(document.createTextNode(countryNames[country]));
+                        flagButton.appendChild(document.createTextNode(countryNames[country] + " (" + country + ")"));
 
                         var liList = document.querySelectorAll('#country-list li');
                         liList.forEach(function (li) {
@@ -115,7 +118,8 @@
             'US': 'USA',
             'CA': 'Canada',
             'GB': 'UK',
-            'AU': 'Australia'
+            'AU': 'Australia',
+            'IN': 'India'
         };
 
         document.addEventListener("DOMContentLoaded", function () {
