@@ -29,6 +29,7 @@
     min-width: 200px;
     text-align: left;
     position: relative !important;
+    padding-right: 40px;
 }
 
 .selectflag3 button#flagButton span#arr-icn{
