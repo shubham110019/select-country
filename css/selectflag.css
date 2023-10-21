@@ -1,9 +1,15 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css");
 
+
+.selectflag .selectflag-placeholder{
+color:#887f7f;
+}
+
 .selectflag #country-list{
     padding: 0;
     margin: 0;
     max-width: 200px;
+    width: 100%;
     border: 1px solid #bcb3b3;
     border-radius: 4px;
     margin-top: 2px;
@@ -13,7 +19,9 @@
 }
 
 .selectflag #country-list li{
-    padding: 8px !important;
+    padding: 12px;
+    font-size: 14px;
+    width: calc(100% - 24px);
 }
 
 .selectflag #country-list li:hover{
@@ -26,13 +34,19 @@
 }
 
 .selectflag #country-list li.selectflag-searchbox input {
-    width: 100% !important;
+    width: calc(100% - 24px);
     border: none;
     padding: 12px;
+    border-radius: 8px;
 }
 
-.selectflag #country-list li:not(:last-child){
-    border-bottom: 1px solid #bcb3b3;
+.selectflag #country-list li.selectflag-searchbox input:focus-visible{
+    border: 0;
+    outline: 0;
+}
+
+.selectflag #country-list li:not(:first-child){
+    border-top: 1px solid #bcb3b3;
 }
 
 .selectflag button#flagButton{

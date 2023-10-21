@@ -403,11 +403,20 @@
                 if (country) {
                     buttonText.text(countryNames[country] + " (" + country + ")");
                     spanElement.attr('class', 'flag-icon flag-icon-' + country.toLowerCase()).css('margin-right', '5px');
+                    if (placeholder && countryNames[country] === placeholder.text) {
+                        buttonText.addClass('placeholder');
+                    } else {
+                        buttonText.removeClass('selectflag-placeholder');
+                    }
                 } else {
                     buttonText.text(placeholder.text); // Update the button text with the placeholder
                     spanElement.attr('class', '').css('margin-right', '0px');
+                    if (placeholder) {
+                        buttonText.addClass('selectflag-placeholder');
+                    }
                 }
             }
+
 
             // Set data-selected-country value in the select and ul li elements
             if (selectedCountry) {
